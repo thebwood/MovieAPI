@@ -15,17 +15,28 @@ namespace Movie.API.Data
         {
         }
 
-        public virtual DbSet<Movie> Movie { get; set; }
-        public virtual DbSet<MovieRating> MovieRating { get; set; }
+        public virtual DbSet<MovieRatings> MovieRatings { get; set; }
+        public virtual DbSet<Movies> Movies { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Movie>(entity =>
+            modelBuilder.Entity<MovieRatings>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.Rating)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Movies>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Description)
-                    .HasMaxLength(200)
+                    .HasMaxLength(2000)
                     .IsUnicode(false);
 
                 entity.Property(e => e.MovieRatingId).HasColumnName("MovieRatingID");
@@ -35,16 +46,6 @@ namespace Movie.API.Data
                 entity.Property(e => e.Title)
                     .IsRequired()
                     .HasMaxLength(100)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<MovieRating>(entity =>
-            {
-                entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.Rating)
-                    .IsRequired()
-                    .HasMaxLength(50)
                     .IsUnicode(false);
             });
 

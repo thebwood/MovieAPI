@@ -28,16 +28,16 @@ namespace Movie.API.Controllers
         }
 
         [HttpGet("genres")]
-        [ProducesResponseType(typeof(MovieModel), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(MovieModel), (int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(MovieModel), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.InternalServerError)]
         public IActionResult GetStatusTypes()
         {
             try
             {
                 var data = _movieRepository.GetMovies();
 
-                var retVal = _mapper.Map<IEnumerable<MovieModel>>(data);
+                var retVal = _mapper.Map<IEnumerable<MoviesModel>>(data);
 
                 if (retVal.Count() > 0)
                 {

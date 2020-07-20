@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Movie.API.Data;
 using Movie.API.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace Movie.API.Domain.Profiles
     {
         public MovieProfile()
         {
-            CreateMap<Data.Movie, MovieModel>();
+            CreateMap<Movies, MoviesModel>();
         }
     }
 }
