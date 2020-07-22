@@ -39,7 +39,7 @@ namespace Movie.API.Data
                     .HasMaxLength(2000)
                     .IsUnicode(false);
 
-                entity.Property(e => e.MovieRatingId).HasColumnName("MovieRatingID");
+                entity.Property(e => e.MovieRatingsId).HasColumnName("MovieRatingsID");
 
                 entity.Property(e => e.ReleaseDate).HasColumnType("datetime");
 

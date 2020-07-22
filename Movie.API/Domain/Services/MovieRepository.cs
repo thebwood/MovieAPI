@@ -13,5 +13,7 @@ namespace Movie.API.Domain.Services
         public MovieRepository(MoviesContext context) => _context = context;
 
         public IEnumerable<Movies> GetMovies() => _context.Movies;
+        public IEnumerable<MovieRatings> GetMovieRatings() => _context.MovieRatings;
+
     }
 }

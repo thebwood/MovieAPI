@@ -27,7 +27,8 @@ namespace Movie.API.Controllers
                 throw new ArgumentNullException(nameof(mapper));
         }
 
-        [HttpGet("genres")]
+
+        [HttpGet]
         [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.InternalServerError)]
@@ -38,6 +39,31 @@ namespace Movie.API.Controllers
                 var data = _movieRepository.GetMovies();
 
                 var retVal = _mapper.Map<IEnumerable<MoviesModel>>(data);
+
+                if (retVal.Count() > 0)
+                {
+                    return Ok(retVal);
+                }
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, "A problem happened while handling your request.");
+            }
+        }
+
+        [HttpGet("ratings")]
+        [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.InternalServerError)]
+        public IActionResult GetMovieRatings()
+        {
+            try
+            {
+                var data = _movieRepository.GetMovieRatings();
+
+                var retVal = _mapper.Map<IEnumerable<MovieRatingsModel>>(data);
 
                 if (retVal.Count() > 0)
                 {
