@@ -7,6 +7,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Movie.API.Data;
 using Movie.API.Domain.Models;
 using Movie.API.Domain.Services;
 
@@ -17,12 +18,12 @@ namespace Movie.API.Controllers
     [ApiController]
     public class MovieController : ControllerBase
     {
-        private IMovieRepository _movieRepository;
+        private IMovieService _service;
         private readonly IMapper _mapper;
-        public MovieController(IMovieRepository repo, IMapper mapper)
+        public MovieController(IMovieService service, IMapper mapper)
         {
-            _movieRepository = repo ??
-                throw new ArgumentNullException(nameof(repo));
+            _service = service ??
+                throw new ArgumentNullException(nameof(service));
             _mapper = mapper ??
                 throw new ArgumentNullException(nameof(mapper));
         }
@@ -36,7 +37,7 @@ namespace Movie.API.Controllers
         {
             try
             {
-                var data = _movieRepository.GetMovies();
+                var data = _service.GetMovies();
 
                 var retVal = _mapper.Map<IEnumerable<MoviesModel>>(data);
 
@@ -61,7 +62,7 @@ namespace Movie.API.Controllers
         {
             try
             {
-                var data = _movieRepository.GetMovie(movieId);
+                var data = _service.GetMovie(movieId);
 
                 var retVal = _mapper.Map<MoviesModel>(data);
 
@@ -87,7 +88,7 @@ namespace Movie.API.Controllers
         {
             try
             {
-                var data = _movieRepository.GetMovieRatings();
+                var data = _service.GetMovieRatings();
 
                 var retVal = _mapper.Map<IEnumerable<MovieRatingsModel>>(data);
 
@@ -103,6 +104,33 @@ namespace Movie.API.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, "A problem happened while handling your request.");
             }
         }
+
+
+        [HttpPost]
+        [ProducesResponseType(typeof(List<string>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<string>), (int)HttpStatusCode.BadRequest)]
+        public IActionResult UpdateMovie([FromBody] MoviesModel movie)
+        {
+            var errorList = new List<string>();
+
+            try
+            {
+
+                errorList = _service.SaveDetail(movie);
+                if (errorList.Count > 0)
+                {
+                    return BadRequest(errorList);
+                }
+            }
+            catch (Exception ex)
+            {
+                errorList = new List<string>() { "Error in saving" };
+                return BadRequest(errorList);
+            }
+
+            return Ok(errorList);
+        }
+
 
     }
 }

@@ -12,6 +12,7 @@ namespace Movie.API.Domain.Profiles
     {
         public MovieProfile()
         {
+            CreateMap<MoviesModel, Movies>();
             CreateMap<Movies, MoviesModel>();
             CreateMap<MovieRatings, MovieRatingsModel>();
         }

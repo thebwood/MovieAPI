@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,13 +40,18 @@ namespace Movie.API
                     .AllowCredentials());
             });
 
-            services.AddControllers();
-            services.AddScoped<IMovieRepository, MovieRepository>();
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+            services.AddControllers();
 
             var connectionString = Configuration["Movies"];
             services.AddDbContext<MoviesContext>(options => options.UseSqlServer(connectionString));
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddScoped<IMovieService, MovieService>();
+
+
 
 
             // Register the Swagger generator, defining 1 or more Swagger documents

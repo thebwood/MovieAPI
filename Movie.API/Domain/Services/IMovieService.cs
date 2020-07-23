@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace Movie.API.Domain.Services
 {
-    public interface IMovieRepository
+    public interface IMovieService
     {
+        List<string> SaveDetail(MoviesModel movie);
         IEnumerable<Movies> GetMovies();
         Movies GetMovie(int movieId);
         IEnumerable<MovieRatings> GetMovieRatings();
-        void SaveDetail(Movies movie);
     }
 }
