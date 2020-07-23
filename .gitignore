@@ -1,0 +1,5 @@
+Movie.API/bin/*
+Movie.API/bin/Debug/*
+Movie.API/bin/Debug/netcoreapp3.1/*
+Movie.API/obj/*
+Movie.API/obj/Debug/*

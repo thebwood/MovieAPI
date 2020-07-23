@@ -29,9 +29,9 @@ namespace Movie.API.Controllers
 
 
         [HttpGet]
-        [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(List<MoviesModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<MoviesModel>), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(List<MoviesModel>), (int)HttpStatusCode.InternalServerError)]
         public IActionResult GetMovies()
         {
             try
@@ -52,6 +52,32 @@ namespace Movie.API.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, "A problem happened while handling your request.");
             }
         }
+
+        [HttpGet("{movieId}")]
+        [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.InternalServerError)]
+        public IActionResult GetMovie(int movieId)
+        {
+            try
+            {
+                var data = _movieRepository.GetMovie(movieId);
+
+                var retVal = _mapper.Map<MoviesModel>(data);
+
+                if (retVal != null)
+                {
+                    return Ok(retVal);
+                }
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, "A problem happened while handling your request.");
+            }
+        }
+
 
         [HttpGet("ratings")]
         [ProducesResponseType(typeof(MovieRatingsModel), (int)HttpStatusCode.OK)]

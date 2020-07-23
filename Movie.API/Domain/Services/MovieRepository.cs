@@ -13,6 +13,9 @@ namespace Movie.API.Domain.Services
         public MovieRepository(MoviesContext context) => _context = context;
 
         public IEnumerable<Movies> GetMovies() => _context.Movies;
+        public Movies GetMovie(int movieId) => _context.Movies.Where(x => x.Id == movieId).SingleOrDefault();
+
+
         public IEnumerable<MovieRatings> GetMovieRatings() => _context.MovieRatings;
 
     }

@@ -33,7 +33,7 @@ namespace Movie.API
             services.AddCors(options =>
             {
                 options.AddPolicy("SiteCorsPolicy",
-                    builder => builder.WithOrigins("http://localhost:3000")
+                    builder => builder.WithOrigins("https://localhost:44356")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials());
