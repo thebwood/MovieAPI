@@ -32,7 +32,7 @@ namespace Movie.API.Controllers
         [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.NotFound)]
         [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.InternalServerError)]
-        public IActionResult GetStatusTypes()
+        public IActionResult GetMovies()
         {
             try
             {
@@ -54,9 +54,9 @@ namespace Movie.API.Controllers
         }
 
         [HttpGet("ratings")]
-        [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(MovieRatingsModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(MovieRatingsModel), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(MovieRatingsModel), (int)HttpStatusCode.InternalServerError)]
         public IActionResult GetMovieRatings()
         {
             try

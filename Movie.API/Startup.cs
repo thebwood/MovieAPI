@@ -79,7 +79,7 @@ namespace Movie.API
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "RefData API");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Movie API");
             });
 
         }
