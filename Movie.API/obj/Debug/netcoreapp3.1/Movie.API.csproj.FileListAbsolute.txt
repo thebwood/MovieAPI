@@ -58,3 +58,4 @@ D:\Development\GitHub\Blazor Apps\MovieAPI\Movie.API\obj\Debug\netcoreapp3.1\sta
 D:\Development\GitHub\Blazor Apps\MovieAPI\Movie.API\obj\Debug\netcoreapp3.1\Movie.API.dll
 D:\Development\GitHub\Blazor Apps\MovieAPI\Movie.API\obj\Debug\netcoreapp3.1\Movie.API.pdb
 D:\Development\GitHub\Blazor Apps\MovieAPI\Movie.API\obj\Debug\netcoreapp3.1\Movie.API.genruntimeconfig.cache
+D:\Development\GitHub\Blazor Apps\MovieAPI\Movie.API\obj\Debug\netcoreapp3.1\Movie.API.csprojAssemblyReference.cache

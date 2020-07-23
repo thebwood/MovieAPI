@@ -55,7 +55,7 @@ namespace Movie.API.Controllers
 
         [HttpGet("{movieId}")]
         [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.InternalServerError)]
         public IActionResult GetMovie(int movieId)
         {
