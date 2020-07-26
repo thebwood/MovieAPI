@@ -18,7 +18,6 @@ namespace Movie.API.Data
         public virtual DbSet<MovieRatings> MovieRatings { get; set; }
         public virtual DbSet<Movies> Movies { get; set; }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MovieRatings>(entity =>

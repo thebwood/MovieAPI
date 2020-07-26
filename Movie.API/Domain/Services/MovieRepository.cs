@@ -11,17 +11,17 @@ namespace Movie.API.Domain.Services
     {
         private MoviesContext _context;
 
-        public MovieRepository(MoviesContext context)
-        {
-            _context = context;
-        }
+        public MovieRepository(MoviesContext context) => _context = context;
 
         public IEnumerable<Movies> GetMovies() => _context.Movies;
         public Movies GetMovie(int movieId) => _context.Movies.Where(x => x.Id == movieId).SingleOrDefault();
 
         public void SaveDetail(Movies movie)
         {
-            _context.Movies.Update(movie);
+            if (movie.Id > 0)
+                _context.Movies.Update(movie);
+            else
+                _context.Movies.Add(movie);
             _context.SaveChanges();
         }
 

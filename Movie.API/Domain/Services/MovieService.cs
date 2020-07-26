@@ -30,7 +30,10 @@ namespace Movie.API.Domain.Services
             var errors = ValidateMovie(movie);
             if(errors.Count() == 0)
             {
-                var existingMovie = _movieRepository.GetMovie(movie.Id);
+                var existingMovie = new Movies();
+                if (movie.Id > 0)
+                    existingMovie = _movieRepository.GetMovie(movie.Id);
+
                 _mapper.Map<MoviesModel, Movies>(movie, existingMovie);
                 _movieRepository.SaveDetail(existingMovie);
             }
