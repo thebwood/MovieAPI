@@ -38,7 +38,7 @@ namespace Movie.API.Controllers
 
                 var retVal = _mapper.Map<IEnumerable<MoviesModel>>(data);
 
-                if (retVal.Count() > 0)
+                if (retVal != null)
                 {
                     return Ok(retVal);
                 }

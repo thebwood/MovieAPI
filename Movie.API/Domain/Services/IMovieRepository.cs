@@ -7,7 +7,7 @@ namespace Movie.API.Domain.Services
     public interface IMovieRepository
     {
         IEnumerable<Movies> GetMovies();
-        Movies GetMovie(int movieId);
+        Movies GetMovie(long movieId);
         IEnumerable<MovieRatings> GetMovieRatings();
         void SaveDetail(Movies movie);
     }
