@@ -36,8 +36,8 @@ namespace Movie.API.Domain.Services
                      from mg in mgs.DefaultIfEmpty()
                      join mr in _context.MovieRatings on m.MovieRatingsId equals mr.Id into mrs
                      from mr in mrs.DefaultIfEmpty()
-                     where (m.Title.Contains(searchRequest.Title)
-                     //m.Description.Contains(searchRequest.Description)
+                     where ((string.IsNullOrWhiteSpace(searchRequest.Title) || m.Title.Contains(searchRequest.Title)) &&
+                     (string.IsNullOrWhiteSpace(searchRequest.Description) || m.Description.Contains(searchRequest.Description))
                      //searchRequest.MovieGenreIds.Contains(m.MovieGenresId.Value) &&
                      //(m.MovieGenresId.HasValue && searchRequest.MovieGenreIds.Contains(m.MovieGenresId.Value)) &&
                      //(searchRequest.MovieRatingIds.Contains(m.MovieRatingsId))
