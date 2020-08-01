@@ -10,5 +10,6 @@ namespace Movie.API.Domain.Services
         Movies GetMovie(long movieId);
         IEnumerable<MovieRatings> GetMovieRatings();
         void SaveDetail(Movies movie);
+        List<MovieSearchResultsModel> SearchMovies(MovieSearchModel model);
     }
 }

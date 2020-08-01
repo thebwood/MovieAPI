@@ -51,6 +51,26 @@ namespace Movie.API.Controllers
             }
         }
 
+        [HttpPost("search")]
+        [ProducesResponseType(typeof(List<MovieSearchResultsModel>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<MovieSearchResultsModel>), (int)HttpStatusCode.NoContent)]
+        [ProducesResponseType(typeof(List<MovieSearchResultsModel>), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(List<MovieSearchResultsModel>), (int)HttpStatusCode.InternalServerError)]
+        public IActionResult SearchMovies([FromBody]MovieSearchModel searchRequest)
+        {
+            try
+            {
+                var searchResults = _service.SearchMovies(searchRequest);
+
+                return Ok(searchResults);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, "A problem happened while handling your request.");
+            }
+
+        }
+
         [HttpGet("{movieId}")]
         [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.NoContent)]

@@ -21,6 +21,9 @@ namespace Movie.API.Domain.Services
         }
 
         public IEnumerable<Movies> GetMovies() => _movieRepository.GetMovies();
+
+        public List<MovieSearchResultsModel> SearchMovies(MovieSearchModel model) => _movieRepository.SearchMovies(model);
+
         public Movies GetMovie(int movieId) => _movieRepository.GetMovie(movieId);
 
         public IEnumerable<MovieRatings> GetMovieRatings() => _movieRepository.GetMovieRatings();
