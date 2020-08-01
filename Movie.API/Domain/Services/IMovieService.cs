@@ -10,6 +10,7 @@ namespace Movie.API.Domain.Services
         IEnumerable<Movies> GetMovies();
         Movies GetMovie(int movieId);
         IEnumerable<MovieRatings> GetMovieRatings();
+        IEnumerable<MovieGenres> GetMovieGenres();
         List<MovieSearchResultsModel> SearchMovies(MovieSearchModel model);
     }
 }

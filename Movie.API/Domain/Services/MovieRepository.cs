@@ -28,6 +28,9 @@ namespace Movie.API.Domain.Services
 
         public IEnumerable<MovieRatings> GetMovieRatings() => _context.MovieRatings;
 
+        public IEnumerable<MovieGenres> GetMovieGenres() => _context.MovieGenres;
+
+
         public List<MovieSearchResultsModel> SearchMovies(MovieSearchModel searchRequest)
         {
             var results =
@@ -37,7 +40,9 @@ namespace Movie.API.Domain.Services
                      join mr in _context.MovieRatings on m.MovieRatingsId equals mr.Id into mrs
                      from mr in mrs.DefaultIfEmpty()
                      where ((string.IsNullOrWhiteSpace(searchRequest.Title) || m.Title.Contains(searchRequest.Title)) &&
-                     (string.IsNullOrWhiteSpace(searchRequest.Description) || m.Description.Contains(searchRequest.Description))
+                     (string.IsNullOrWhiteSpace(searchRequest.Description) || m.Description.Contains(searchRequest.Description)) &&
+                     (searchRequest.ReleaseYear == null || (m.ReleaseDate.HasValue && m.ReleaseDate.Value.Year == searchRequest.ReleaseYear)) &&
+                     (searchRequest.MovieRatingsId == null || m.MovieRatingsId == searchRequest.MovieRatingsId)
                      //searchRequest.MovieGenreIds.Contains(m.MovieGenresId.Value) &&
                      //(m.MovieGenresId.HasValue && searchRequest.MovieGenreIds.Contains(m.MovieGenresId.Value)) &&
                      //(searchRequest.MovieRatingIds.Contains(m.MovieRatingsId))

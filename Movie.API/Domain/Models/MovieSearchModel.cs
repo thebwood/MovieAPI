@@ -9,7 +9,8 @@ namespace Movie.API.Domain.Models
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public List<int> MovieRatingIds { get; set; }
+        public int? ReleaseYear { get; set; }
+        public int? MovieRatingsId { get; set; }
         public List<int> MovieGenreIds { get; set; }
     }
 }

@@ -15,6 +15,7 @@ namespace Movie.API.Domain.Profiles
             CreateMap<MoviesModel, Movies>();
             CreateMap<Movies, MoviesModel>();
             CreateMap<MovieRatings, MovieRatingsModel>();
+            CreateMap<MovieGenres, MovieGenresModel>();
         }
     }
 }

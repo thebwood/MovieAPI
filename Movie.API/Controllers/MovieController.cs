@@ -122,6 +122,30 @@ namespace Movie.API.Controllers
             }
         }
 
+        [HttpGet("genres")]
+        [ProducesResponseType(typeof(MovieGenresModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(MovieGenresModel), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(MovieGenresModel), (int)HttpStatusCode.InternalServerError)]
+        public IActionResult GetMovieGenres()
+        {
+            try
+            {
+                var data = _service.GetMovieGenres();
+
+                var retVal = _mapper.Map<IEnumerable<MovieGenresModel>>(data);
+
+                if (retVal.Count() > 0)
+                {
+                    return Ok(retVal);
+                }
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, "A problem happened while handling your request.");
+            }
+        }
 
         [HttpPost]
         [ProducesResponseType(typeof(List<string>), (int)HttpStatusCode.OK)]
