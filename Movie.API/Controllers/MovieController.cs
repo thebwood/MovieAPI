@@ -75,7 +75,7 @@ namespace Movie.API.Controllers
         [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.NoContent)]
         [ProducesResponseType(typeof(MoviesModel), (int)HttpStatusCode.InternalServerError)]
-        public IActionResult GetMovie(int movieId)
+        public IActionResult GetMovie(long movieId)
         {
             try
             {

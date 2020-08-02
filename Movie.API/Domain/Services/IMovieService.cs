@@ -8,7 +8,7 @@ namespace Movie.API.Domain.Services
     {
         List<string> SaveDetail(MoviesModel movie);
         IEnumerable<Movies> GetMovies();
-        Movies GetMovie(int movieId);
+        Movies GetMovie(long movieId);
         IEnumerable<MovieRatings> GetMovieRatings();
         IEnumerable<MovieGenres> GetMovieGenres();
         List<MovieSearchResultsModel> SearchMovies(MovieSearchModel model);
